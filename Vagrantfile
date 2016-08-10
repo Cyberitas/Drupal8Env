@@ -88,10 +88,6 @@ Vagrant.configure(2) do |config|
       # This is mostly for jnutt's benefit
       cp /vagrant/VagrantScripts/rxvt-unicode-256color /usr/share/terminfo/r/
 
-      cd /vagrant/WebServer
-      sudo -u vagrant /usr/local/bin/ant install
-      cd
-
       echo "Install JBoss"
       IWASHERE=$(pwd)
       cd /root
@@ -126,11 +122,5 @@ Vagrant.configure(2) do |config|
       cd ${IWASHERE}
 
    SHELL
-
-   # install PhP to Oracle database bridge
-   config.vm.provision "shell", path: "VagrantScripts/phpToOracle.sh", args: "-c"
-
-   # install SIML for legacy Blueprint
-   config.vm.provision "shell", path: "VagrantScripts/nopSmartSystems.sh"
 
 end
