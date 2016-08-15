@@ -45,6 +45,9 @@ Vagrant.configure(2) do |config|
    # Setting our network configruations, be sure to change the hostname relative to the needed project
    config.vm.network "private_network", ip: "192.168.34.10"
    config.vm.hostname = "drupal8.development.cyberitas.com"
+   config.vm.network :forwarded_port, host: 4567, guest: 80
+   config.vm.network :forwarded_port, host:  1080, guest: 1080
+   config.ssh.forward_agent = true
 
    if OS.windows?
        puts "Windows not using nfs"
@@ -65,5 +68,5 @@ Vagrant.configure(2) do |config|
 
    puts "Installing commands (requires 'vagrant plugin install vagrant-exec')"
 
-   config.vm.provision :shell, path: "VagrantScripts/bootstrap.sh"
+   config.vm.provision :shell, path: "Scripts/startup.sh"
 end

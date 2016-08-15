@@ -16,7 +16,7 @@ service redis start
 sed -i -e 's/upload_max_filesize.*/upload_max_filesize = 128M/g' /etc/php.ini
 
 # This is mostly for jnutt's benefit
-cp /vagrant/VagrantScripts/rxvt-unicode-256color /usr/share/terminfo/r/
+cp /vagrant/Scripts/rxvt-unicode-256color /usr/share/terminfo/r/
 
 echo "Install JBoss"
 IWASHERE=$(pwd)
@@ -51,29 +51,31 @@ echo "relayhost = 192.168.1.49" >> /etc/postfix/main.cf
 
 cd ${IWASHERE}
 
+
 # Drupal 8 Installation
 
 # Drush Time
-if drush version; then
-  echo "Drush already installed"
-else
+{
+    drush version
+} || {
+    echo "Now installing Drush"
+
     # Download latest stable release using the code below or browse to github.com/drush-ops/drush/releases.
     php -r "readfile('http://files.drush.org/drush.phar');" > drush
-    # Or use our upcoming release: php -r "readfile('http://files.drush.org/drush-unstable.phar');" > drush
-
-    # Test your install.
-    php drush core-status
 
     # Make `drush` executable as a command from anywhere. Destination can be anywhere on $PATH.
     chmod +x drush
-    sudo mv drush /usr/local/bin
-fi
+    mv drush /usr/local/bin
 
-echo "Please wait while Drupal is downloading..."
+    echo "Please wait while Drupal is downloading..."
 
-cd ../
-drush dl drupal
+    # Correctly position the directory into the Website folder and move into this directory
+    cd ../
+    echo "Currently in directory: "
+    pwd
+    /usr/local/bin/drush dl drupal
+    sudo mv ./drupal-8.1.8 /var/www/html/Website
+    sudo ln -fs /var/www/html/WebSite /vagrant/
 
-mv ./drupal-8.1.8 ./WebSite
-
-cd ./WebSite
+}
+echo "Drupal Setup Complete"
