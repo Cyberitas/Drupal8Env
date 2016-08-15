@@ -76,5 +76,6 @@ cd ${IWASHERE}
     /usr/local/bin/drush dl drupal
     sudo mv ./drupal-8.1.8 /vagrant/Website/
     sudo ln -fs /vagrant/Website/ /var/www/html/
+    sudo cp -r /vagrant/cyberitas/ /vagrant/Website/profiles/
 }
 echo "Drupal Setup Complete"

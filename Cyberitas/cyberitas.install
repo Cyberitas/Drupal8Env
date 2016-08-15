@@ -1,0 +1,28 @@
+<?php
+
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function cyberitas_install() {
+  // First, do everything in standard profile.
+  include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
+  standard_install();
+
+  // Then we can perform our own actions.
+  $vocabulary = Vocabulary::create(array(
+    'vid' => 'example_profile_vocabulary',
+    'name' => 'example profile vocabulary',
+  ))->save();
+  $term = Term::create(array(
+    'parent' => array(),
+    'name' => 'example term',
+    'vid' => 'example_profile_vocabulary',
+  ))->save();
+}

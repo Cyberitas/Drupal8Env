@@ -1,0 +1,14 @@
+# The following three lines are required, our profile won’t work without them:
+name: Cyberitas
+type: profile
+description: The official Cyberitas installation profile.
+# core: 8.x
+dependencies:
+  - google_analytics
+themes:
+  - bartik
+  - seven
+
+version: '1.0.0'
+core: '8.x'
+datestamp: 1470233790
