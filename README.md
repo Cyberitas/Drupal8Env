@@ -21,5 +21,7 @@ vagrant up
 vagrant ssh
 ```
 <br />
-DONE! You have a fully working  <br  />
-<br  />
+
+The Website folder in your git repo will be where we keep the Core Drupal code.
+
+Open up a web browser and navigate to http://localhost:4567/Website/ this will take you to your Drupal 8 Site

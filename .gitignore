@@ -1,6 +1,8 @@
 .bash_aliases
 .idea
 .vagrant
+Website/*
+Website
 projects/*
 projects
 

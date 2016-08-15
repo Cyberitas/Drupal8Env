@@ -74,8 +74,7 @@ cd ${IWASHERE}
     echo "Currently in directory: "
     pwd
     /usr/local/bin/drush dl drupal
-    sudo mv ./drupal-8.1.8 /var/www/html/Website
-    sudo ln -fs /var/www/html/WebSite /vagrant/
-
+    sudo mv ./drupal-8.1.8 /vagrant/Website/
+    sudo ln -fs /vagrant/Website/ /var/www/html/
 }
 echo "Drupal Setup Complete"
