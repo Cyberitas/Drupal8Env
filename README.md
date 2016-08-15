@@ -25,3 +25,14 @@ vagrant ssh
 The Website folder in your git repo will be where we keep the Core Drupal code.
 
 Open up a web browser and navigate to http://localhost:4567/Website/ this will take you to your Drupal 8 Site
+
+Notes for our current setup:
+
+Had to modify the httpd.conf file and enable the mod_rewrite in the Directory var/www/html section around line 338
+
+```
+sudo vim /etc/httpd/conf/httpd.conf 
+sudo service httpd restart
+```
+
+The mysql username/password is root and an empty password.
