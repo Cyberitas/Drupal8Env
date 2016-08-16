@@ -82,5 +82,8 @@ cd ${IWASHERE}
     sed -i '338d' /etc/httpd/conf/httpd.conf
     sed -i '338i\AllowOverride All' /etc/httpd/conf/httpd.conf
     sudo service httpd restart
+    cd /vagrant/Website
+
+    sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/C21Database --site-name=C21
 }
 echo "Drupal Setup Complete"

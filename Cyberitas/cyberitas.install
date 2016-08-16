@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Install, update and uninstall functions for the spark install profile.
+ * Install, update and uninstall hooks for the Example Profile install profile.
  */
 
 /**
@@ -11,10 +12,10 @@
  *
  * @see system_install()
  */
-function spark_install() {
-  // First, do everything in standard profile.
-  include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
+function example_profile_install() {
+  // First, do everything that is done in the standard profile.
+  include_once DRUPAL_ROOT . 'core/profiles/standard/standard.install';
   standard_install();
 
-  // Can add code in here to make nodes, terms, etc.
+  // Add code here to make nodes, terms, etc.
 }
