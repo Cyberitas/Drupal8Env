@@ -77,5 +77,10 @@ cd ${IWASHERE}
     sudo mv ./drupal-8.1.8 /vagrant/Website/
     sudo ln -fs /vagrant/Website/ /var/www/html/
     sudo cp -r /vagrant/cyberitas/ /vagrant/Website/profiles/
+
+    # Have to make some apache changes, maybe we should update our CentOS?
+    sed -i '338d' /etc/httpd/conf/httpd.conf
+    sed -i '338i\AllowOverride All' /etc/httpd/conf/httpd.conf
+    sudo service httpd restart
 }
 echo "Drupal Setup Complete"
