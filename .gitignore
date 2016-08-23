@@ -1,10 +1,10 @@
 .bash_aliases
 .idea
 .vagrant
-Website/*
-Website
-projects/*
-projects
+Drupal8Ang/*
+Drupal8Ang
+AngularApp/*
+AngularApp
 
 # Compiled source #
 ###################

@@ -69,21 +69,30 @@ cd ${IWASHERE}
 
     echo "Please wait while Drupal is downloading..."
 
-    # Correctly position the directory into the Website folder and move into this directory
-    cd ../
-    echo "Currently in directory: "
-    pwd
-    /usr/local/bin/drush dl drupal
-    sudo mv ./drupal-8.1.8 /vagrant/Website/
-    sudo ln -fs /vagrant/Website/ /var/www/html/
-    sudo cp -r /vagrant/cyberitas/ /vagrant/Website/profiles/
+    # Import latest headless drupal code w/modules (maintained by Cyberitas)
+    git clone https://github.com/Cyberitas/Drupal8Ang.git
+    #Installing Angular pre-req
+    sudo npm install -g bower
+
+    #Initializing angular drupal start
+    git clone https://github.com/Cyberitas/AngularApp.git
+    cd AngularApp
+    sudo npm install
+    # Import angular theme and modules (Cyberitas only)
+
+    # Move things around as needed
+
+    #Database import
+
+    sudo ln -fs /vagrant/Drupal8Ang/ /var/www/html/
+    sudo cp -r /vagrant/cyberitas/ /vagrant/Drupal8Ang/profiles/
 
     # Have to make some apache changes, maybe we should update our CentOS?
     sed -i '338d' /etc/httpd/conf/httpd.conf
     sed -i '338i\AllowOverride All' /etc/httpd/conf/httpd.conf
     sudo service httpd restart
-    cd /vagrant/Website
+    cd /vagrant/Drupal8Ang
 
-    sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/C21Database --site-name=C21
+    sudo /usr/local/bin/drush  si cyberitas -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/C_One_Database --site-name=Cable_One
 }
 echo "Drupal Setup Complete"
