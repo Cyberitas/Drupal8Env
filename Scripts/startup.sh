@@ -91,8 +91,10 @@ cd ${IWASHERE}
     sed -i '338d' /etc/httpd/conf/httpd.conf
     sed -i '338i\AllowOverride All' /etc/httpd/conf/httpd.conf
     sudo service httpd restart
-    cd /vagrant/Drupal8Ang
+    cd /home/vagrant/Drupal8Ang
 
-    sudo /usr/local/bin/drush  si cyberitas -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/C_One_Database --site-name=Cable_One
+    sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/COneDev --site-name=Cable_One
+    # Module Setup
+    sudo /usr/local/bin/drush  en -y hal rest serialization basic_auth
 }
 echo "Drupal Setup Complete"

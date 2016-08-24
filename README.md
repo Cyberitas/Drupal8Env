@@ -29,3 +29,9 @@ Open up a web browser and navigate to http://localhost:4567/Website/ this will t
 Notes for our current setup:
 
 The mysql username/password is root and an empty password.
+
+Some notes on creating routes (views) 
+
+First: Create a new view of the content you wish to display, define it under "Rest Export Settings". http://localhost:4567/Drupal8Ang/admin/structure/views/add
+Second: Create a content type with fields that'll be the approximation of what you want to pass via the REST API. http://localhost:4567/Drupal8Ang/admin/structure/types    
+Third (Optional) Change permissions on the content type to allow users to modify data (as anonymous) http://localhost:4567/Drupal8Ang/admin/people/permissions
