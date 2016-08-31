@@ -16,6 +16,9 @@ Run Git Bash as Admin
 ```
 git clone https://github.com/Cyberitas/Drupal8Env
 cd Drupal8Env 
+
+git clone https://github.com/Cyberitas/Drupal8Ang.git
+git svn clone https://svn.cyberitas.com:18080/svn/CableOne/trunk  AngularApp
 vagrant up 
 
 vagrant ssh
