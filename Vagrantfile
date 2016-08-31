@@ -39,8 +39,8 @@ Vagrant.configure(2) do |config|
    end
 
    # Using the Cyberitas Redhat distro
-   config.vm.box = "cyberitas/centos6_x86_64-LAMP"
-   config.vm.box_url = "http://artifact.cyberitas.com/StaticProvisioning/centos6_x86_64-LAMP.box"
+   config.vm.box = "cyberitas/centos7_x86_64-LAMP"
+   config.vm.box_url = "http://artifact.cyberitas.com/StaticProvisioning/centos7.box"
 
    # Setting our network configruations, be sure to change the hostname relative to the needed project
    config.vm.network "private_network", ip: "192.168.34.10"
