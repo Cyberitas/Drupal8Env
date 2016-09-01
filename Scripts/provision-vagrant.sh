@@ -36,11 +36,9 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin 
 
 
 # Drupal 8 Installation
-sudo mkdir -p /var/www/drupal
-sudo yum install mod_ssl
 
-#Install configuration file
-sudo cp /vagrant/Scripts/drupal.conf /etc/httpd/conf.d/
+
+
 
 # Drush Time
 {
@@ -61,15 +59,22 @@ sudo cp /vagrant/Scripts/drupal.conf /etc/httpd/conf.d/
     sudo npm install
 
     #Copy information over to the html directory
-    sudo ln -fs /vagrant/Drupal8Ang/ /var/www/html/
+    sudo mkdir /var/www/drupal
+    sudo ln -fs /vagrant/Drupal8Ang/* /var/www/drupal
 
-    # Note: The /etc/httpd/conf/httpd.conf should never be revised, this is controlled by yum/rpm/updates.
-    # Note: Place the project specific configuration in the /etc/httpd/conf.d/ directory
+    #SSL and Apache configuration
+    mkdir /etc/httpd/ssl
+    cd /etc/httpd/ssl
+    sudo cp /vagrant/Scripts/drupalssl.* ./
+    sudo yum -y install mod_ssl
+
+    #Install configuration file
+    sudo cp /vagrant/Scripts/drupal.conf /etc/httpd/conf.d/
 
     # RHEL/CentOS 7 uses systemctl.  service and /etc/init.d/* were deprecated.
     systemctl restart httpd
 
-    cd /home/vagrant/Drupal8Ang
+    cd /vagrant/Drupal8Ang
 
     sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/COneDev --site-name=Cable_One
     # Module Setup
