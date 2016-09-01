@@ -45,7 +45,8 @@ Vagrant.configure(2) do |config|
 
    # Setting our network configruations, be sure to change the hostname relative to the needed project
    config.vm.network "private_network", ip: "192.168.37.10"
-   config.vm.hostname = "drupal8.development.cyberitas.com"
+   config.vm.hostname = "www.drupal8.development.cyberitas.com"
+
    # Are these port forwards needed for Drupal 8 development?
    config.vm.network :forwarded_port, host: 4567, guest: 80
    config.vm.network :forwarded_port, host: 1080, guest: 1080

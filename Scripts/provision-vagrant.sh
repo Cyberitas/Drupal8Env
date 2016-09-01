@@ -33,7 +33,14 @@ yum install -y nodejs
 #Install Global Composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
 
+
+
 # Drupal 8 Installation
+sudo mkdir -p /var/www/drupal
+sudo yum install mod_ssl
+
+#Install configuration file
+sudo cp /vagrant/Scripts/drupal.conf /etc/httpd/conf.d/
 
 # Drush Time
 {
