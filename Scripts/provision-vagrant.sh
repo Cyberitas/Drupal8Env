@@ -59,8 +59,11 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin 
     sudo npm install
 
     #Copy information over to the html directory
-    sudo mkdir /var/www/drupal
-    sudo ln -fs /vagrant/Drupal8Ang/* /var/www/drupal
+    cd /vagrant
+    sudo /usr/local/bin/drush dl drupal-8.1.8
+    cd /vagrant/drupal-8.1.8
+    sudo ln -fs /vagrant/drupal-8.1.8 /var/www/drupal
+
 
     #SSL and Apache configuration
     mkdir /etc/httpd/ssl
@@ -74,11 +77,17 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin 
     # RHEL/CentOS 7 uses systemctl.  service and /etc/init.d/* were deprecated.
     systemctl restart httpd
 
-    cd /vagrant/Drupal8Ang
+    #Drupal specific stuff
+    cd /vagrant/drupal-8.1.8
+    cd sites/default
+    cp /vagrant/Scripts/settings.php ./settings.php
+    sudo cp default.services.yml services.yml
+    sudo mv /vagrant/Scripts/files ./
 
-    sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/COneDev --site-name=Cable_One
+
+    # sudo /usr/local/bin/drush  si standard -y --account-name=admin --account-pass=admin --db-url=mysql://root@localhost/COneDev --site-name=Cable_One
     # Module Setup
-    sudo /usr/local/bin/drush  en -y hal rest serialization basic_auth
+    # sudo /usr/local/bin/drush  en -y hal rest serialization basic_auth
 }
 echo "Drupal Setup Complete"
 
